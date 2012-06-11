@@ -5,7 +5,7 @@
 ** Login   <dewitt_t@epitech.net>
 ** 
 ** Started on  Thu Jun  7 19:12:57 2012 thomas dewitte
-** Last update Thu Jun  7 19:16:12 2012 thomas dewitte
+** Last update Fri Jun  8 15:46:24 2012 thomas dewitte
 */
 
 #ifndef __INPUT_H__
