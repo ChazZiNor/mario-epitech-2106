@@ -17,24 +17,12 @@ return_zero_physics(GameObject* g) {
   return (0);
 }
 
-static void
-return_zero_update(GameObject* g) {
-  (void)g;
-}
-
 static physics_func_ptr physics_init_ptr[] = {
   return_zero_physics,
   return_zero_physics,
   return_zero_physics,
   instanciatePhysics,
   instanciatePhysics,
-};
-
-static update_func_ptr physics_init[] = {
-  return_zero_update,
-  return_zero_update,
-  return_zero_update,
-  return_zero_update,
 };
 
 GameObject*

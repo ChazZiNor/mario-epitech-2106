@@ -15,7 +15,7 @@ CC	=	gcc
 RM	=	rm -f
 
 CFLAGS	+=	-W -Wall -Wextra -std=c99 -IMapSerializer/ -IGameObject/ -IPhysics/ -IPhysics/RigidBody \
-		-ITools/ -ITools/GenericList/ -IGameEngine/ -IGameEngine/ -ITransform -ggdb
+		-ITools/ -ITools/GenericList/ -IGameEngine/ -IGameEngine/ -ITransform -IPerception -ggdb
 
 LDFLAGS	+=	-lm
 

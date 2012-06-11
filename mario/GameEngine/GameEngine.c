@@ -1,4 +1,5 @@
 #include <sys/types.h>
+#include <stdio.h>
 
 #include "Transform.h"
 #include "MapSerializer.h"
@@ -7,6 +8,7 @@
 #include "enumGameObject.h"
 #include "gameObject.h"
 #include "GameEngine.h"
+#include "Perception.h"
 
 extern GameEngine* gameEngine;
 
@@ -30,25 +32,20 @@ findObjectsById(int id) {
 
 static void
 updateForeach(GameObject** g) {
-  printf("Updating : %d\n", (*g)->id);
   if ((*g)->update) (*g)->update(*g);
   if ((*g)->physics) (*g)->physics->physicsState = perception((*g));
   if ((*g)->physics) { (*g)->physics->physicsUpdate(*g);
-    printf("Updating Physics : %d\n", (*g)->id);
   }
 }
 
 void
 gameEngineUpdate(GameEngine* this) {
-  char buf[512];
-
   list_foreach(GameObjectList, this->_gameObjects, &updateForeach);
+#warning debug physics
   for (int i = 0; i != 4 * 3; ++i) {
     for (int j = 0; j != 6 * 3; ++j) {
       if (gameEngine->_map._map[i][j] != -1 && findObjectsById(gameEngine->_map._map[i][j])->type == 4)
         printf("type = %d coord = %d - %d\n", findObjectsById(gameEngine->_map._map[i][j])->type, findObjectsById(gameEngine->_map._map[i][j])->transform.position.x, findObjectsById(gameEngine->_map._map[i][j])->transform.position.y);
     }
-    printf("\n");
   }
-  read(0, buf, 1);
 }

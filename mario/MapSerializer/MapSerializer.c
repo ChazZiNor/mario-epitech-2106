@@ -28,7 +28,6 @@ fillMap(int start_i, int start_j, gameObjectType type) {
 
   if (type != 0) {
     t = instanciateGameObject(type, start_i, start_j);
-    printf("going to add id : %d\n", t->id);
     gameEngine->_gameObjects = list_push_front(GameObjectList, gameEngine->_gameObjects, t);
     id = t->id;
   } else {
@@ -63,14 +62,6 @@ MapSerializer_serialize(void) {
     for (int j = 0, map_j = 0; j != sizeof(__map[i]); ++j, map_j += 3) {
       fillMap(map_i, map_j, __map[i][j]);
     }
-  }
-
-#warning debug map
-  for (int i = 0; i != 4 * 3; ++i) {
-    for (int j = 0; j != 6 * 3; ++j) {
-      printf("%d", gameEngine->_map._map[i][j]);
-    }
-    printf("\n");
   }
 }
 
