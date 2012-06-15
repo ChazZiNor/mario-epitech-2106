@@ -28,12 +28,13 @@ myRound(float nb) {
 static void
 isFallingPhysics(GameObject* this) {
   this->physics->gravityForce += 0.1f;
-  this->transform.position.y += myRound(this->physics->gravityForce);
+  this->transform.position.x += myRound(this->physics->gravityForce);
+  updateMap(this);
 }
 
 static void
 isInWaterPhysics(GameObject* this) {
-  this->transform.position.y += this->physics->gravityForce;
+  this->transform.position.x += this->physics->gravityForce;
 }
 
 static physicsBehaviour physicsCallback[] =

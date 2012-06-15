@@ -15,9 +15,9 @@
 extern GameEngine* gameEngine;
 
 static char __map[][6]= {
-  {NONE, GOOMBA, NONE, NONE, NONE, NONE},
+  {NONE, GOOMBA, NONE, NONE, MARIO, NONE},
   {NONE, NONE, NONE, NONE, NONE, NONE},
-  {NONE, NONE, MARIO, NONE, NONE, GROUND},
+  {NONE, NONE, NONE, NONE, NONE, GROUND},
   {GROUND, GROUND, GROUND, GROUND, GROUND, GROUND},
 };
 

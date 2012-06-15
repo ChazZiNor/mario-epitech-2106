@@ -14,5 +14,6 @@ GameObjectList*	findObjectsByTags(GameEngine*);
 GameObject*	findObjectsById(int);
 
 void		gameEngineUpdate(GameEngine*);
+void            updateMap(GameObject *this);
 
 #endif

@@ -1,4 +1,5 @@
 #include <sys/types.h>
+#include <unistd.h>
 #include <stdio.h>
 
 #include "Transform.h"
@@ -39,13 +40,40 @@ updateForeach(GameObject** g) {
 }
 
 void
-gameEngineUpdate(GameEngine* this) {
-  list_foreach(GameObjectList, this->_gameObjects, &updateForeach);
-#warning debug physics
+updateMap(GameObject *this) {
+  printf("toUpdate = %d %d\n", this->transform.position.x, this->transform.position.y);
+  char                  tmp;
+  unsigned int           i = this->transform.position.x - 1;
+  unsigned int           j = this->transform.position.y;
+
+  while (j < this->transform.position.y + 3) {
+    tmp = gameEngine->_map._map[i + 3][j];
+    gameEngine->_map._map[i + 3][j] = gameEngine->_map._map[i][j];
+    gameEngine->_map._map[i][j] = tmp;
+    j++;
+  }
+
   for (int i = 0; i != 4 * 3; ++i) {
     for (int j = 0; j != 6 * 3; ++j) {
-      if (gameEngine->_map._map[i][j] != -1 && findObjectsById(gameEngine->_map._map[i][j])->type == 4)
-        printf("type = %d coord = %d - %d\n", findObjectsById(gameEngine->_map._map[i][j])->type, findObjectsById(gameEngine->_map._map[i][j])->transform.position.x, findObjectsById(gameEngine->_map._map[i][j])->transform.position.y);
+      printf("\t%d", gameEngine->_map._map[i][j]);
     }
+    printf("\n");
   }
+  printf("\n\n\n\n\n\n\n");
+}
+
+void
+gameEngineUpdate(GameEngine* this) {
+  list_foreach(GameObjectList, this->_gameObjects, &updateForeach);
+
+  char buf[512];
+
+  read(1, buf, 1);
+#warning debug physics
+  /* for (int i = 0; i != 4 * 3; ++i) { */
+  /*   for (int j = 0; j != 6 * 3; ++j) { */
+  /*     if (gameEngine->_map._map[i][j] != -1 && findObjectsById(gameEngine->_map._map[i][j])->type == 4) */
+  /*       printf("type = %d coord = %d - %d\n", findObjectsById(gameEngine->_map._map[i][j])->type, findObjectsById(gameEngine->_map._map[i][j])->transform.position.x, findObjectsById(gameEngine->_map._map[i][j])->transform.position.y); */
+  /*   } */
+  /* } */
 }
